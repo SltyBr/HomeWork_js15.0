@@ -38,13 +38,15 @@ switch (lang) {
 //---------------------------------------------------------------------//
 
 // 3)Решение с помощью многомерного массива
-/* let lang = ['ru', 'en'];
 
-let langOption = prompt('Выберите язык ru/en?');
+let arr = [
+    {lang: 'ru', week: 'понедельник, вторник, среда, четверг, пятница, суббота, воскресенье'},    
+    {lang: 'en', week: 'monday, tuesday, wednesday, thursday, friday, saturday, sunday'}    
+];
 
-let week = (langOption == lang[0]) ? console.log('понедельник, вторник, среда, четверг, пятница, суббота, воскресенье'): 
-    (langOption == lang[1]) ? console.log('monday, tuesday, wednesday, thursday, friday, saturday, sunday'):
-    console.log('такого языка не предусмотренно, попробуй ещё'); */
+console.log(arr.find(item => item.lang == 'ru'));
+
+
 //---------------------------------------------------------------------//
 
 // Вторая часть усложненного ДЗ
