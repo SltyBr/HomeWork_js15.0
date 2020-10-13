@@ -10,4 +10,4 @@ if (str !== String(str))
     if (str1.length > 30) {console.log(str1.substr(0, 30) + '...');}
 }}
 
-strTrim(123);
+strTrim('                adasdasdasaaaaaaaaaaaaaaa      adsdasdasd                      ');
