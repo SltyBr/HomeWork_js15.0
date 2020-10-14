@@ -1,15 +1,23 @@
 'use strict';
 
-let money = prompt('Ваш месячный доход?', 20000), 
+let isNumber = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+let money,
     income = 'Freelance 120000', 
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'), 
     deposit = confirm('Есть ли у вас депозит в банке?'),
-    expenses1 = prompt('Введите обязательную статью расходов?'),
-    amount1 = +prompt('Во сколько это обойдется?', 3000),
-    expenses2 = prompt('Введите обязательную статью расходов?'),
-    amount2 = +prompt('Во сколько это обойдется?', 3000),
+    expenses = [],
     mission = 100000,
     period = 6;
+
+let start = function() {
+    do {money = prompt('Ваш месячный доход?', 20000);}
+    while (!isNumber(money));
+};
+
+start();
 
 let showTypeOf = function(data) {
     console.log(data, typeof(data));
@@ -20,11 +28,23 @@ showTypeOf(income);
 showTypeOf(deposit);
 
 let getExpensesMonth = function() {
-    return (amount1 + amount2);
+ 
+    let sum = 0;
+
+    for (let i = 0; i < 2; i++) {
+
+        expenses[i] = prompt('Введите обязательную статью расходов?', 'Квартира');
+
+        sum += +prompt('Во сколько это обойдется?');
+    }
+
+    return (sum);
 };
 
+let expensesAmount = getExpensesMonth();
+
 let getAccumulatedMonth = function() {
-    return (money - getExpensesMonth());
+    return (money - expensesAmount);
 };
 
 let accumulatedMonth = getAccumulatedMonth();
@@ -32,7 +52,11 @@ let accumulatedMonth = getAccumulatedMonth();
 let budgetDay = Math.floor(accumulatedMonth/30);
 
 let getTargetMonth = function () {
-    return mission/accumulatedMonth;
+    if (mission/accumulatedMonth > 0) {
+        return ('Месяцев до цели: ' + Math.ceil(mission/accumulatedMonth));
+    } else {
+        return ('Цель не будет достигнута :(');
+    }
 };
 
 let getStatusIncome = function(){
@@ -50,8 +74,8 @@ let getStatusIncome = function(){
 console.log(addExpenses.toLowerCase().split(', '));
 console.log('Бюджет на день: ', budgetDay);
 console.log(getStatusIncome());
-console.log('Сумма обязательных расходов: ' + getExpensesMonth());
+console.log('Сумма обязательных расходов: ' + expensesAmount);
 console.log('Накопления за месяц: ' + getAccumulatedMonth());
 console.log('Бюджет на месяц: ' + accumulatedMonth);
-console.log('Месяцев накопления: ' + Math.floor(getTargetMonth()));
+console.log(getTargetMonth());
 
