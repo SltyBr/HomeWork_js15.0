@@ -39,12 +39,14 @@ switch (lang) {
 
 // 3)Решение с помощью многомерного массива
 
-let arr = [
-    {lang: 'ru', week: 'понедельник, вторник, среда, четверг, пятница, суббота, воскресенье'},    
-    {lang: 'en', week: 'monday, tuesday, wednesday, thursday, friday, saturday, sunday'}    
-];
+let lang = {
+    ru: 'понедельник, вторник, среда, четверг, пятница, суббота, воскресенье',
+    en: 'monday, tuesday, wednesday, thursday, friday, saturday, sunday'
+};
 
-console.log(arr.find(item => item.lang == 'ru'));
+let key = prompt("Выберите язык ru/en?");
+
+alert( lang[key] );
 
 
 //---------------------------------------------------------------------//
