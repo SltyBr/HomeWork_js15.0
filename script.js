@@ -5,7 +5,7 @@ let isNumber = function(n) {
 };
 
 let money,
-    income = 'Freelance 120000', 
+    income = 'Freelance', 
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'), 
     deposit = confirm('Есть ли у вас депозит в банке?'),
     expenses = [],
@@ -28,14 +28,17 @@ showTypeOf(income);
 showTypeOf(deposit);
 
 let getExpensesMonth = function() {
- 
+    let amount = 0;
     let sum = 0;
-
     for (let i = 0; i < 2; i++) {
 
         expenses[i] = prompt('Введите обязательную статью расходов?', 'Квартира');
 
-        sum += +prompt('Во сколько это обойдется?');
+        amount = prompt('Во сколько это обойдется?');
+        while (!isNumber(amount)) {
+            amount = prompt('Во сколько это обойдется?');
+        }
+        sum += +amount;
     }
 
     return (sum);
@@ -78,4 +81,3 @@ console.log('Сумма обязательных расходов: ' + expensesA
 console.log('Накопления за месяц: ' + getAccumulatedMonth());
 console.log('Бюджет на месяц: ' + accumulatedMonth);
 console.log(getTargetMonth());
-
