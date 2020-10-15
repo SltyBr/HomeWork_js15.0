@@ -3,7 +3,6 @@
 // 1)Решение с помощью if else
 /* let lang = prompt('выберите язык ru/en?');
 
-for (let i = 0; i < 2; i++) {
     if (lang == 'ru') {
         alert('понедельник, вторник, среда, четверг, пятница, суббота, воскресенье');
         break;
@@ -11,10 +10,9 @@ for (let i = 0; i < 2; i++) {
         alert('monday, tuesday, wednesday, thursday, friday, saturday, sunday');
         break;
     } else {
-        lang = prompt('попробуйте ещё раз ru/en?');
-        i--;
+        console.log('Что-то пошло не так');
     }
-} */
+
 //---------------------------------------------------------------------//
 // 2)Решение с помощью switch
 
