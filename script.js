@@ -16,7 +16,7 @@ function guess() {
             {
             n = 10;
             guess();
-            }
+            } else {alert('Хорошего дня!');}
     } else {
         if (num == secret) {
             alert('Угадали!');
