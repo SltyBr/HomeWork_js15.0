@@ -21,13 +21,13 @@ function guess() {
         if (num == secret) {
             alert('Угадали!');
         }   
+        else if (num === null) {
+            alert('Игра окончена');
+        }
         else if (!isNumber(num)) {
             alert('Введи число!');
             guess();
         }   
-        else if (num === null) {
-            alert('Игра окончена');
-        }
         else if (num > secret) {
             alert('Загаданное число меньше');
             guess();
@@ -40,4 +40,4 @@ function guess() {
 }   
 
 guess();
-
+console.dir(guess);
