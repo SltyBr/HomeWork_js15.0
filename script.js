@@ -58,18 +58,18 @@ let appData = {
         appData.budgetDay = appData.budgetMonth/30;
     },
     getTargetMonth: function () {
-        if (appData.mission/accumulatedMonth > 0) {
-            return ('Месяцев до цели: ' + Math.ceil(appData.mission/accumulatedMonth));
+        if (appData.mission/appData.budgetMonth > 0) {
+            return ('Месяцев до цели: ' + Math.ceil(appData.mission/appData.budgetMonth));
         } else {
             return ('Цель не будет достигнута :(');
         }
     },
     getStatusIncome: function(){
-        if (budgetDay >= 1200) {
+        if (appData.budgetDay >= 1200) {
             return ('у вас высокий уровень дохода!');
-        } else if (budgetDay >= 600 && budgetDay < 1200) {
+        } else if (appData.budgetDay >= 600 && appData.budgetDay < 1200) {
             return ('У вас средний уровень дохода');
-        } else if (budgetDay < 600 && budgetDay >= 0){
+        } else if (appData.budgetDay < 600 && appData.budgetDay >= 0){
             return ('К сожалению, у вас уровень дохода ниже среднего');
         } else {
             return ('Что-то пошло не так');
@@ -78,19 +78,18 @@ let appData = {
 };
 
 appData.asking();
+appData.getExpensesMonth();
+appData.getBudget();
+appData.getTargetMonth();
+appData.getStatusIncome();
 
-let expensesAmount = appData.getExpensesMonth();
-
-let accumulatedMonth = appData.budgetMonth;
-
-let budgetDay = Math.floor(appData.budgetDay);
-
-
-console.log('Бюджет на день: ', budgetDay);
-console.log(appData.getStatusIncome());
-console.log('Сумма обязательных расходов: ' + expensesAmount);
-console.log('Накопления за месяц: ' + appData.getBudget());
-console.log('Бюджет на месяц: ' + accumulatedMonth);
+console.log('Расходы за месяц: ' + appData.expensesMonth + ' руб');
 console.log(appData.getTargetMonth());
+console.log(appData.getStatusIncome());
 
-console.log(appData);
+function appDataOptions() {
+    console.log('Наша программа включает в себя данные: ');
+    for (let key in appData)
+    {console.log('Свойство: ' + key + ' Значение: ' + appData[key]);}}
+
+appDataOptions();
