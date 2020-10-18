@@ -4,15 +4,13 @@ let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-
 let money,
-    start = function() {
-        do {money = prompt('Ваш месячный доход?', 20000);}
-        while (!isNumber(money));
-    };
-    
-    start();
-    
+start = function() {
+    do {money = prompt('Ваш месячный доход?', 20000);}
+    while (!isNumber(money));
+};
+start();
+
 let appData = {
     budget: money,
     budgetDay: 0,
@@ -77,6 +75,13 @@ let appData = {
     }
 };
 
+function appDataOptions() {
+    console.log('Наша программа включает в себя данные: ');
+    for (let key in appData)
+    {console.log('Свойство: ' + key + ' Значение: ' + appData[key]);}
+}
+appDataOptions();
+
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
@@ -86,10 +91,3 @@ appData.getStatusIncome();
 console.log('Расходы за месяц: ' + appData.expensesMonth + ' руб');
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
-
-function appDataOptions() {
-    console.log('Наша программа включает в себя данные: ');
-    for (let key in appData)
-    {console.log('Свойство: ' + key + ' Значение: ' + appData[key]);}}
-
-appDataOptions();
