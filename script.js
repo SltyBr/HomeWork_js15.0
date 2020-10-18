@@ -26,26 +26,29 @@ let appData = {
     mission: 50000,
     period: 6,
     asking: function(){
+
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
-    },
-    getExpensesMonth: function() {
-        let amount = 0;
-        let sum = 0;
-        for (let i = 0; i < 2; i++) {
-    
-            appData.expenses[i] = prompt('Введите обязательную статью расходов?', 'Квартира');
-    
-            amount = prompt('Во сколько это обойдется?');
-            while (!isNumber(amount)) {
-                amount = prompt('Во сколько это обойдется?');
-            }
-            sum += +amount;
-        }
-    
-        return (sum);
-    },
+
+            let amount = 0,
+                expenses,
+                sum = 0;
+                for (let i = 0; i < 2; i++) {
+                    expenses = prompt('Введите обязательную статью расходов?', 'Квартира');
+                    amount = prompt('Во сколько это обойдется?');
+
+                    appData.expenses[expenses] = amount;
+            
+                    while (!isNumber(amount)) {
+                        amount = prompt('Во сколько это обойдется?');
+                    }
+                    sum += +amount;
+                }
+            
+                return (sum);
+        },
+    getExpensesMonth: function() {},
     getAccumulatedMonth: function() {
         return (money - expensesAmount);
     },
@@ -84,3 +87,5 @@ console.log('Сумма обязательных расходов: ' + expensesA
 console.log('Накопления за месяц: ' + appData.getAccumulatedMonth());
 console.log('Бюджет на месяц: ' + accumulatedMonth);
 console.log(appData.getTargetMonth());
+
+console.log(appData);
