@@ -7,7 +7,6 @@ function weekWindow()
     for (let i=0; i< week.length; i++) {
         body.innerHTML += `<div>${week[i]}</div>`;
     }
-    return body.innerHTML;
 }
 
 for (let i=0; i< week.length; i++) {
