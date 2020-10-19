@@ -4,6 +4,16 @@ let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
+function ucFirst(str) {
+    if (!str) {return str;}
+  
+    return str[0].toUpperCase() + str.slice(1);
+}
+
+let isString = function(n) {
+    return Boolean(parseInt(n));
+};
+
 let money,
 start = function() {
     do {money = prompt('Ваш месячный доход?', 20000);}
@@ -28,10 +38,16 @@ let appData = {
     asking: function(){
 
         if(confirm('Есть ли у вас дополнительный заработок?')){
-            let itemIncome = prompt('Какой у вас есть дополнительный заработок?', 'Такси');
+            let itemIncome;
+
             do {itemIncome = prompt('Какой у вас есть дополнительный заработок?', 'Такси');}
-            while (Boolean(parseInt(itemIncome)));
+            while (isString(itemIncome));
+
             let cashIncome = prompt('Сколько в месяц зарабатываете на этом?', 10000);
+            while (!isNumber(cashIncome)){
+                cashIncome = prompt('Сколько в месяц зарабатываете на этом?', 10000);
+            }
+
             appData.income[itemIncome] = cashIncome;
         }
 
@@ -39,7 +55,11 @@ let appData = {
             amount = 0,
             expenses;
             
-            appData.addExpenses = addExpenses.toLowerCase().split(', ');
+            appData.addExpenses = addExpenses.split(', ');
+
+            for (let i = 0; i < appData.addExpenses.length; i++){
+                appData.addExpenses[i] = ucFirst(appData.addExpenses[i]);
+            }
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         for (let i = 0; i < 2; i++) {
@@ -109,4 +129,4 @@ appData.getStatusIncome();
 console.log('Расходы за месяц: ' + appData.expensesMonth + ' руб');
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
-
+console.log(appData.addExpenses);
