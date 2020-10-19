@@ -126,12 +126,12 @@ let appData = {
     }
 };
 
-/* function appDataOptions() {
+function appDataOptions() {
     console.log('Наша программа включает в себя данные: ');
     for (let key in appData)
     {console.log('Свойство: ' + key + ' Значение: ' + appData[key]);}
 }
-appDataOptions(); */
+appDataOptions();
 
 appData.asking();
 appData.getExpensesMonth();
