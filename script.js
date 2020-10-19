@@ -140,6 +140,7 @@ function appDataOptions() {
     {console.log('Свойство: ' + key + ' Значение: ' + appData[key]);}
 }
 appDataOptions();
+
 console.log('Расходы за месяц: ' + appData.expensesMonth + ' руб');
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
