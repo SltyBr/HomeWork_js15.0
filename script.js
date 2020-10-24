@@ -4,8 +4,14 @@ const startBtn = document.getElementById('start'),
     incomeBtn = document.getElementsByTagName('button')[0],
     expencesBtn = document.getElementsByTagName('button')[1],
     depositCheckbox = document.querySelector('#deposit-check'),
-    addIncomeItem = document.querySelectorAll('.additional_income-item'),
-    budgetMonthVal = document.getElementsByClassName('result-total'),
+    addIncomeItem = document.querySelectorAll('.additional_income-item')[0],
+    budgetMonthVal = document.getElementsByClassName('budget_month-value')[0],
+    budgetDaythVal = document.getElementsByClassName('budget_day-value')[0],
+    expensesMonthVal = document.getElementsByClassName('expenses_month-value')[0],
+    addIncomeVal = document.getElementsByClassName('additional_income-value')[0],
+    addExpensesVal = document.getElementsByClassName('additional_expenses-value')[0],
+    incomePeriodVal = document.getElementsByClassName('income_period-value')[0],
+    targetMonthVal = document.getElementsByClassName('target_month-value')[0],
     monthIncome = document.querySelector('.salary-amount'),
     addIncomeTitle = document.querySelector('.income-items .income-title'),
     addIncomeAmount = document.querySelector('.income-amount'),
@@ -16,21 +22,8 @@ const startBtn = document.getElementById('start'),
     periodSelect = document.querySelector('.period-select');
 
 
-console.log(incomeBtn);
-console.log(expencesBtn);
-console.log(startBtn);
-console.log(depositCheckbox);
-console.log(addIncomeItem);
-console.log(budgetMonthVal);
-console.log(monthIncome);
-console.log(addIncomeTitle);
-console.log(addIncomeAmount);
-console.log(mainIncomeTitle);
-console.log(mainIncomeAmount);
-console.log(addExpensesItem);
-console.log(periodSelect);
 
-/* let isNumber = function(n) {
+let isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
@@ -174,4 +167,4 @@ appDataOptions();
 console.log('Расходы за месяц: ' + appData.expensesMonth + ' руб');
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
-console.log(appData.addExpenses); */
+console.log(appData.addExpenses);
