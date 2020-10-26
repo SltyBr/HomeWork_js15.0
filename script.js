@@ -1,15 +1,15 @@
 'use sctrict';
 
 const  todoControl = document.querySelector('.todo-control'),
-    btnAddItem = document.getElementById('add'),
     headerInput = document.querySelector('.header-input'),
     todoList = document.querySelector('.todo-list'),
+    btnAddItem = document.querySelector('#id'),
     todoCompleted = document.querySelector('.todo-completed');
 
-const todoData = [];
+let todoData = JSON.parse(localStorage.getItem('items')) || [];
 
-const render = function() {
 
+const render = function() { 
     todoList.textContent = '';
     todoCompleted.textContent = '';
 
@@ -29,32 +29,38 @@ const render = function() {
         }
 
         const todoComplete = li.querySelector('.todo-complete');
+        const todoRemove = li.querySelector('.todo-remove');
 
         todoComplete.addEventListener('click', function(){
             item.completed = !item.completed;
             render();
         });
+        todoRemove.addEventListener('click', function(){
+            li.remove();
+            todoData.splice(item, 1);
+            render();
+        });
     });
+    localStorage.setItem('items', JSON.stringify(todoData));
 };
+
 
 todoControl.addEventListener('submit', function(event){
 
     event.preventDefault();
-
-    const newTodo = {
+    if (todoControl.querySelector('.header-input').value == ''){
+        return false;
+    } else{
+        const newTodo = {
         value: headerInput.value,
         completed: false
     };
 
     todoData.push(newTodo);
-
     render();
-
-    todoControl.querySelector('.header-input').value = null;
+    todoControl.querySelector('.header-input').value = null;}
 });
 
 render();
 
-btnAddItem.setAttribute('disabled', 'disabled');
 
-console.dir(btnAddItem.disabled);
