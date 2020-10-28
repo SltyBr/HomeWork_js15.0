@@ -79,7 +79,7 @@ let appData = {
         addIncomeVal.value = appData.addIncome.join(',');
         targetMonthVal.value = Math.ceil(appData.getTargetMonth());
         incomePeriodVal.value = appData.calcSavedMoney();
-        
+        console.log(this);
         periodSelect.addEventListener('input', function(){
             incomePeriodVal.value = appData.calcSavedMoney();
         });
