@@ -204,15 +204,17 @@ let reset = appData.reset.bind(appData);
 
 startBtn.addEventListener('click', function(){
     start();
-    let inputs = document.querySelectorAll('input[type=text]');
-    inputs.forEach( function(el){
-        el.disabled = true;
-    });
 
     if (!isNumber(salaryAmount.value)) {
         startBtn.setAttribute = 'disabled';
         return (salaryAmount.value = null);
     }
+    
+    let inputs = document.querySelectorAll('input[type=text]');
+    inputs.forEach( function(el){
+        el.disabled = true;
+    });
+
 
     startBtn.style.display = 'none';
     resetBtn.style.display = 'block';
