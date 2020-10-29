@@ -1,6 +1,6 @@
 'use strict';
 
-const 
+const startBtn = document.getElementById('start'),
     incomeBtn = document.getElementsByTagName('button')[0],
     expencesBtn = document.getElementsByTagName('button')[1],
     depositCheckbox = document.querySelector('#deposit-check'),
@@ -18,12 +18,11 @@ const
     mainIncomeTitle = document.querySelector('.expenses-items .expenses-title'),
     addExpensesItem = document.querySelector('.additional_expenses-item'),
     targetAmount = document.querySelector('.target-amount'),
-    periodSelect = document.querySelector('.period-select');
+    periodSelect = document.querySelector('.period-select'),
+    resetBtn = document.getElementById('cancel');
     let expensesItems = document.querySelectorAll('.expenses-items'),
-        startBtn = document.getElementById('start'),
         incomeItem = document.querySelectorAll('.income-items'),
-        periodAmount = document.querySelector('.period-amount'),
-        resetBtn;
+        periodAmount = document.querySelector('.period-amount');
 
 
 let isNumber = function(n) {
@@ -206,41 +205,29 @@ let reset = appData.reset.bind(appData);
 startBtn.addEventListener('click', function(){
     start();
     let inputs = document.querySelectorAll('input[type=text]');
-
     inputs.forEach( function(el){
         el.disabled = true;
     });
 
-    startBtn.removeAttribute('id');
+    if (!isNumber(salaryAmount.value)) {
+        startBtn.setAttribute = 'disabled';
+        return (salaryAmount.value = null);
+    }
 
-    resetBtn = startBtn.cloneNode(true);
+    startBtn.style.display = 'none';
+    resetBtn.style.display = 'block';
+});
 
-    resetBtn.setAttribute('id', 'start');
+resetBtn.addEventListener('click', function(){
+    reset();
+    let inputs = document.querySelectorAll('input[type=text]');
 
-    resetBtn.textContent = 'Сбросить';
-
-    startBtn.replaceWith(resetBtn);
-
-    resetBtn.addEventListener('click', function(){
-        reset();
-        
-        let inputs = document.querySelectorAll('input[type=text]');
-
-        inputs.forEach( function(el){
-            el.value = null;
-            el.disabled = false;
-        });
-
-        resetBtn.removeAttribute('id');
-
-        startBtn = resetBtn.cloneNode(true);
-    
-        startBtn.setAttribute('id', 'start');
-    
-        startBtn.textContent = 'Рассчитать';
-    
-        resetBtn.replaceWith(startBtn);
+    inputs.forEach( function(el){
+        el.disabled = false;
+        el.value = null;
     });
+    resetBtn.style.display = 'none';
+    startBtn.style.display = 'block';
 });
 
 expencesBtn.addEventListener('click', appData.addExpensesBlock);
@@ -249,7 +236,6 @@ periodSelect.addEventListener('input', function(){
     periodAmount.innerHTML = periodSelect.value;
 });
 
-start();
 /* 
 
 function appDataOptions() {
