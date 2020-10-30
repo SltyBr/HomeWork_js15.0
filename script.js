@@ -93,8 +93,12 @@ let appData = {
         });
     },
     addExpensesBlock: function(){
-        let cloneExpensesItem = expensesItems[0].cloneNode(true);
+        let cloneExpensesItem = expensesItems[0].cloneNode(true),
+            cloneExpensesTitle = cloneExpensesItem.querySelector('.expenses-title'),
+            cloneExpensesAmount = cloneExpensesItem.querySelector('.expenses-amount');
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesBtn);
+        cloneExpensesTitle.value = '';  // сбрасываем значения инпутов у новых элементов
+        cloneExpensesAmount.value = ''; //
         expensesItems = document.querySelectorAll('.expenses-items');
         if (expensesItems.length === 3){
             expensesBtn.style.display = 'none';
@@ -123,8 +127,12 @@ let appData = {
         }
     },
     addIncomeBlock: function(){
-        let cloneincomeItems = incomeItems[0].cloneNode(true);
+        let cloneincomeItems = incomeItems[0].cloneNode(true),
+            cloneincomeTitle = cloneincomeItems.querySelector('.income-title'),
+            cloneincomeAmount = cloneincomeItems.querySelector('.income-amount');
         incomeItems[0].parentNode.insertBefore(cloneincomeItems, incomeBtn);
+        cloneincomeTitle.value = ''; // сбрасываем значения инпутов у новых элементов
+        cloneincomeAmount.value = ''; //
         incomeItems = document.querySelectorAll('.income-items');
         if (incomeItems.length === 3){
             incomeBtn.style.display = 'none';
@@ -191,7 +199,7 @@ let appData = {
     calcSavedMoney: function(){
         return (this.budgetMonth * periodSelect.value);
     },
-    startBtnFunc: function(){
+    startBtnFunc: function(){ // функция старта
         start();
 
         if (!isNumber(salaryAmount.value)) {
@@ -208,7 +216,7 @@ let appData = {
         startBtn.style.display = 'none';
         resetBtn.style.display = 'block';
     },
-    resetBtnFunc: function(){
+    resetBtnFunc: function(){ // функция сброса
         reset();
         let inputs = document.querySelectorAll('input[type=text]');
     
@@ -241,8 +249,8 @@ let appData = {
         this.showResult();
     }
 };
-let start = appData.start.bind(appData),
-    reset = appData.reset.bind(appData);
+let start = appData.start.bind(appData), // привязываем метод к объекту appData
+    reset = appData.reset.bind(appData); // привязываем метод к объекту appData
 
 
 startBtn.addEventListener('click', appData.startBtnFunc); // функция старт по событию клик
