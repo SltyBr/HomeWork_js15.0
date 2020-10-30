@@ -62,6 +62,21 @@ let appData = {
     moneyDeposit: 0,
     start: function() {
 
+        
+        if (!isNumber(salaryAmount.value)) {
+            startBtn.setAttribute = 'disabled';
+            return (salaryAmount.value = null);
+        }
+        
+        let inputs = document.querySelectorAll('input[type=text]');
+        inputs.forEach( function(el){
+            el.disabled = true;
+        });
+
+
+        startBtn.style.display = 'none';
+        resetBtn.style.display = 'block';
+
         this.budget = +salaryAmount.value;
 
         this.getExpenses();
@@ -199,25 +214,8 @@ let appData = {
     calcSavedMoney: function(){
         return (this.budgetMonth * periodSelect.value);
     },
-    startBtnFunc: function(){ // функция старта
-        start();
+    reset: function(){
 
-        if (!isNumber(salaryAmount.value)) {
-            startBtn.setAttribute = 'disabled';
-            return (salaryAmount.value = null);
-        }
-        
-        let inputs = document.querySelectorAll('input[type=text]');
-        inputs.forEach( function(el){
-            el.disabled = true;
-        });
-
-
-        startBtn.style.display = 'none';
-        resetBtn.style.display = 'block';
-    },
-    resetBtnFunc: function(){ // функция сброса
-        reset();
         let inputs = document.querySelectorAll('input[type=text]');
     
         inputs.forEach( function(el){
@@ -232,8 +230,7 @@ let appData = {
 
         removeItems(incomeItems);
         removeItems(expensesItems);
-    },
-    reset: function(){
+
         this.budget = 0;
         this.budgetDay = 0;
         this.budgetMonth = 0;
@@ -253,8 +250,8 @@ let start = appData.start.bind(appData), // привязываем метод к
     reset = appData.reset.bind(appData); // привязываем метод к объекту appData
 
 
-startBtn.addEventListener('click', appData.startBtnFunc); // функция старт по событию клик
-resetBtn.addEventListener('click', appData.resetBtnFunc); // функция сброса по событию клик
+startBtn.addEventListener('click', function(){start();}); // функция старт по событию клик
+resetBtn.addEventListener('click', function(){reset();}); // функция сброса по событию клик
 expensesBtn.addEventListener('click', appData.addExpensesBlock); 
 incomeBtn.addEventListener('click', appData.addIncomeBlock);
 
