@@ -24,7 +24,6 @@ const startBtn = document.getElementById('start'),
         incomeItems = document.querySelectorAll('.income-items'),
         periodAmount = document.querySelector('.period-amount');
 
-
 const isNumber = function(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
@@ -286,3 +285,4 @@ const appData = new AppData();
 appData.eventListeners();
 
 console.log(appData);
+
