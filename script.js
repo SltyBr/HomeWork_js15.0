@@ -24,21 +24,21 @@ const startBtn = document.getElementById('start'),
         incomeItems = document.querySelectorAll('.income-items'),
         periodAmount = document.querySelector('.period-amount');
 
-const isNumber = function(n) {
+const isNumber = (n) => {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-const ucFirst = function(str) {
+const ucFirst = (str) => {
     if (!str) {return str;}
   
     return str[0].toUpperCase() + str.slice(1);
 };
 
-const isString = function(n) {
+const isString = (n) => {
     return Boolean(parseInt(n));
 };
 
-const removeItems = function(obj){ // функция удаления элемента из DOM дерева по условию
+const removeItems = (obj) => { // функция удаления элемента из DOM дерева по условию
     for (let key in obj){
         if (key > 0){
             obj[key].remove();
@@ -69,7 +69,7 @@ class AppData {
         }
         
         let inputs = document.querySelectorAll('input[type=text]');
-        inputs.forEach( function(el){
+        inputs.forEach( (el) => {
             el.disabled = true;
         });
     
@@ -104,7 +104,7 @@ class AppData {
         addIncomeVal.value = this.addIncome.join(',');
         targetMonthVal.value = Math.ceil(this.getTargetMonth());
         incomePeriodVal.value = this.calcSavedMoney();
-        periodSelect.addEventListener('input', function(){
+        periodSelect.addEventListener('input', () => {
             incomePeriodVal.value = _this.calcSavedMoney();
         });
     }
@@ -159,7 +159,7 @@ class AppData {
     getAddExpenses(){
         const _this = this;
         let addExpenses = addExpensesItem.value.split(',');
-        addExpenses.forEach(function(item){
+        addExpenses.forEach((item) => {
             item = item.trim();
             if (item !== ''){
                 _this.addExpenses.push(item);
@@ -169,7 +169,7 @@ class AppData {
 
     getAddIncome(){
         const _this = this;
-        addincomeItems.forEach(function(item){
+        addincomeItems.forEach((item) => {
             let itemValue = item.value.trim();
             if (itemValue !== ''){
                 _this.addIncome.push(itemValue);
@@ -227,7 +227,7 @@ class AppData {
 
     reset(){
         let inputs = document.querySelectorAll('input[type=text]');
-        inputs.forEach( function(el){
+        inputs.forEach( (el) => {
             el.disabled = false;
             el.value = null;
         });
@@ -266,7 +266,7 @@ class AppData {
     
         incomeBtn.addEventListener('click', _this.addIncomeBlock);
     
-        periodSelect.addEventListener('input', function(){
+        periodSelect.addEventListener('input', () => {
         periodAmount.innerHTML = periodSelect.value;
     });
     }
