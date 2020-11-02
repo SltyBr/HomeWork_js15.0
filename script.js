@@ -49,18 +49,6 @@ const removeItems = (obj) => { // функция удаления элемент
     }
 };
 
-const changeComma = (str) => {
-    let newStr = str.split('');
-    console.log(newStr);
-    newStr.forEach((el) =>{
-        if (el === ','){
-            
-        }
-    });
-    str = newStr.join(',');
-    console.log(str);
-};
-
 class AppData {
     constructor(){
         this.budget = 0;
@@ -274,22 +262,22 @@ class AppData {
     }
 
     changePercent(){
+        
+        depositPercent.addEventListener('keydown', (event) =>{ // запрещаем вводить пробел
+            if (event.code === 'Space'){
+                event.preventDefault();
+            }
+        });
+
         let valueSelect = this.value;
         if (valueSelect === 'other'){
             //домашнее задание
             valueSelect = '';
             depositPercent.style.display = 'inline-block';
             depositPercent.disabled = false;
-            depositPercent.value = valueSelect;
         } else{
             depositPercent.value = valueSelect;
         }
-
-        depositPercent.addEventListener('keydown', (event) =>{ // запрещаем вводить пробел
-            if (event.code === 'Space'){
-                event.preventDefault();
-            }
-        });
     }
 
     depositHandler(){
@@ -331,5 +319,3 @@ class AppData {
 const appData = new AppData();
 
 appData.eventListeners();
-
-changeComma('0,04');
