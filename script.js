@@ -69,7 +69,7 @@ class AppData {
 
         if (!isNumber(salaryAmount.value)) {
             startBtn.setAttribute = 'disabled';
-        return (salaryAmount.value = ''), (depositAmount.value = '');}
+        return (salaryAmount.value = '');}
 
 
 
@@ -256,6 +256,13 @@ class AppData {
             }
         });
 
+        depositPercent.addEventListener('change', ()=>{
+            if (!isNumber(depositPercent.value) || depositPercent.value > 100 || depositPercent.value < 0){
+                alert('Введите корректный процент');
+                depositPercent.value = null;
+            }
+        });
+        
         let valueSelect = this.value;
         if (valueSelect === 'other'){
             valueSelect = '';
@@ -279,11 +286,19 @@ class AppData {
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
             depositPercent.style.display = 'none';
-            depositBank.value = '';
+            depositBank.value = '0';
             depositAmount.value = '';
             this.deposit = false;
             depositBank.removeEventListener('change', this.changePercent);
         }
+
+        depositAmount.addEventListener('change', ()=>{
+            if (!isNumber(depositAmount.value)){
+                alert('Введите корректнyю сумму');
+                depositAmount.value = null;
+            }
+        });
+
     }
 
     eventListeners(){
