@@ -322,5 +322,3 @@ class AppData {
 const appData = new AppData();
 
 appData.eventListeners();
-
-console.log(isNumber());
